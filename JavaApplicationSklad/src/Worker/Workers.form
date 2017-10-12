@@ -32,6 +32,8 @@
                           <Component id="jButtonALTER" alignment="0" max="32767" attributes="0"/>
                           <Component id="jButtonADD" alignment="0" max="32767" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="jButtonCount" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
@@ -50,7 +52,10 @@
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="jButtonADD" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="jButtonALTER" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jButtonALTER" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonCount" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="jButtonDELETE" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="27" max="32767" attributes="0"/>
@@ -131,5 +136,13 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="jButtonCount">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="count"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCountActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

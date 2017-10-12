@@ -2,6 +2,9 @@ package Worker;
 
 import Entities.Worker;
 import Entities.Role;
+import Entities.Data;
+import Role.RoleModel;
+import java.util.Random;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +18,8 @@ import javax.swing.table.AbstractTableModel;
 public class WorkerModel extends AbstractTableModel {
     
     List<Worker> list = new ArrayList<>();
-
+    List<Role> roleList = new ArrayList();
+            
     Connection c;
     
     public WorkerModel(Connection c) throws SQLException {
@@ -126,6 +130,39 @@ public class WorkerModel extends AbstractTableModel {
             JOptionPane.showMessageDialog(new JFrame(), ex.getMessage());
         }
     } 
+       
+    public void insert1k() throws SQLException {
+        try {
+            c.setAutoCommit(false);
+            Statement st = c.createStatement();
+            roleList = RoleModel.selectRole(c);
+            for (int i = 0; i < 1000; i++){
+                Random rnd = new Random();
+                st.execute("insert into worker "
+                + "(first_name,surname,patronymic,role_id) values ('"
+                + Data.getNames().get(rnd.nextInt(Data.getNames().size())) + "','"
+                + Data.getSurnames().get(rnd.nextInt(Data.getSurnames().size())) + "','" 
+                + Data.getPatronymics().get(rnd.nextInt(Data.getPatronymics().size())) + "','"
+                + roleList.get(rnd.nextInt(roleList.size())).getID() + "');");
+            }
+            c.commit();
+        } catch (SQLException ex) {  
+            c.rollback();
+            JOptionPane.showMessageDialog(new JFrame(), ex.getMessage());            
+        }
+    }
+    
+    public int getCountRows(){
+        try {
+                Statement statement = c.createStatement();
+                ResultSet rs = statement.executeQuery("select count(*) from Worker");
+                rs.next();
+                return rs.getInt(1);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(new JFrame(), ex.getMessage());
+                return 0;
+            }
+    }
     
     public void delete(int id){
         try {

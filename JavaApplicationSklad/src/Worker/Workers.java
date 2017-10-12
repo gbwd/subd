@@ -29,21 +29,9 @@ public class Workers extends javax.swing.JDialog {
         jTable1.setModel(model);
         jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         columnWidth = new SizeSetter();
-        columnWidth.resizeColumnWidth(jTable1);
-        
-        getCountRows();
+        columnWidth.resizeColumnWidth(jTable1);        
     }
-
-    private void getCountRows(){
-        try {
-                Statement statement = connection.createStatement();
-                ResultSet rs = statement.executeQuery("select count(*) from Worker");
-                rs.next();
-                System.out.print(rs.getInt(1));
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(new JFrame(), ex.getMessage());
-            }
-    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -53,6 +41,7 @@ public class Workers extends javax.swing.JDialog {
         jButtonDELETE = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButtonCount = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -90,6 +79,13 @@ public class Workers extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jButtonCount.setText("count");
+        jButtonCount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCountActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,7 +97,9 @@ public class Workers extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonDELETE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonALTER, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonADD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jButtonADD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(37, 37, 37)
+                        .addComponent(jButtonCount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -115,7 +113,9 @@ public class Workers extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jButtonADD)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonALTER)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonALTER)
+                    .addComponent(jButtonCount))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonDELETE)
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -162,11 +162,16 @@ public class Workers extends javax.swing.JDialog {
         ((AbstractTableModel) jTable1.getModel()).fireTableDataChanged();
     }//GEN-LAST:event_jButtonDELETEActionPerformed
 
+    private void jButtonCountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCountActionPerformed
+        JOptionPane.showMessageDialog(new JFrame(), model.getCountRows());
+    }//GEN-LAST:event_jButtonCountActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonADD;
     private javax.swing.JButton jButtonALTER;
+    private javax.swing.JButton jButtonCount;
     private javax.swing.JButton jButtonDELETE;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

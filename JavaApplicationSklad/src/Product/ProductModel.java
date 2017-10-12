@@ -1,4 +1,4 @@
-package Product;
+ package Product;
 
 import Entities.Product;
 import java.sql.Connection;
@@ -10,7 +10,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
-
+ 
 public class ProductModel extends AbstractTableModel {
     
     List<Product> list = new ArrayList<>();
